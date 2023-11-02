@@ -23,9 +23,29 @@ def seed():
         # Add a truncate command here for every table that will be seeded.
         db.session.commit()
     seed_users()
+    if environment == 'production':
+        # Before seeding, truncate all tables prefixed with schema name
+        db.session.execute(f"TRUNCATE table {SCHEMA}.wallets RESTART IDENTITY CASCADE;")
+        # Add a truncate command here for every table that will be seeded.
+        db.session.commit()
     seed_wallets()
+    if environment == 'production':
+        # Before seeding, truncate all tables prefixed with schema name
+        db.session.execute(f"TRUNCATE table {SCHEMA}.stocks RESTART IDENTITY CASCADE;")
+        # Add a truncate command here for every table that will be seeded.
+        db.session.commit()
     seed_stocks()
+    if environment == 'production':
+        # Before seeding, truncate all tables prefixed with schema name
+        db.session.execute(f"TRUNCATE table {SCHEMA}.assets RESTART IDENTITY CASCADE;")
+        # Add a truncate command here for every table that will be seeded.
+        db.session.commit()
     seed_assets()
+    if environment == 'production':
+        # Before seeding, truncate all tables prefixed with schema name
+        db.session.execute(f"TRUNCATE table {SCHEMA}.transactions RESTART IDENTITY CASCADE;")
+        # Add a truncate command here for every table that will be seeded.
+        db.session.commit()
     seed_transactions()
     # Add other seed functions here
 
